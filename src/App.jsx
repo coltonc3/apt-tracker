@@ -83,11 +83,11 @@ const NEIGHBORHOODS = [
   "Financial District", "Upper West Side", "Williamsburg", "Greenpoint", "Chelsea",
 ];
 
-const STATUS_ORDER = ["Watching", "Contacted", "Tour Scheduled", "Toured", "Applied", "Approved", "Rejected", "Passed"];
+const STATUS_ORDER = ["Watching", "Contacted", "Touring", "Toured", "Applied", "Approved", "Rejected", "Passed"];
 const STATUS_COLORS = {
   Watching: "#6b7280",
   Contacted: "#3b82f6",
-  "Tour Scheduled": "#f59e0b",
+  Touring: "#f59e0b",
   Toured: "#8b5cf6",
   Applied: "#ec4899",
   Approved: "#10b981",
