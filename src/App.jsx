@@ -327,15 +327,8 @@ function Modal({ listing, onSave, onClose, onDelete, saving }) {
                     ) : f.type === "star_rating" ? (
                       <div style={{ paddingTop: 4 }}><StarRating value={Number(val)} onChange={v => set(k, v)} /></div>
                     ) : f.type === "nullable_number" ? (
-                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <input type="number" value={val === "N/A" ? "" : val} onChange={e => set(k, e.target.value)}
-                          placeholder="Enter value" disabled={val === "N/A"} style={{ ...inputStyle, flex: 1, opacity: val === "N/A" ? 0.4 : 1 }} />
-                        <label style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer", whiteSpace: "nowrap" }}>
-                          <input type="checkbox" checked={val === "N/A"} onChange={e => set(k, e.target.checked ? "N/A" : "")}
-                            style={{ accentColor: "#f59e0b", width: 14, height: 14 }} />
-                          <span style={{ color: "#9ca3af", fontSize: 12 }}>N/A</span>
-                        </label>
-                      </div>
+                      <input type="number" value={val === "N/A" ? "" : val} onChange={e => set(k, e.target.value)}
+                        placeholder="—" style={inputStyle} />
                     ) : (
                       <input type={f.type === "number" ? "number" : f.type === "date" ? "date" : "text"}
                         value={val} onChange={e => set(k, e.target.value)} style={inputStyle} />
