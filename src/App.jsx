@@ -102,7 +102,7 @@ const FIELDS = {
   beds: { label: "Beds", type: "select", options: ["", "Studio", "1", "2"] },
   baths: { label: "Baths", type: "select", options: ["", "1", "2"] },
   sqft: { label: "Sq Ft", type: "nullable_number" },
-  floor: { label: "Floor", type: "scroll_picker", min: 1, max: 50, nullable: true },
+  floor: { label: "Floor", type: "nullable_number" },
   status: { label: "Status", type: "select", options: STATUS_ORDER },
   doorman: { label: "Doorman", type: "boolean" },
   elevator: { label: "Elevator", type: "boolean" },
