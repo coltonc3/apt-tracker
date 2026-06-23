@@ -482,7 +482,7 @@ export default function App() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 16 }}>
           <div>
             <h1 style={{ fontFamily: "Georgia, serif", fontSize: 28, fontWeight: 400, margin: 0, color: "#f9fafb", letterSpacing: "-0.02em" }}>
-              NYC Apartment Search
+              Colton & Skylar Apt Tracker
             </h1>
             <p style={{ color: "#6b7280", fontSize: 13, margin: "4px 0 0" }}>
               {listings.length} listings · {listings.filter(l => ["Applied", "Approved"].includes(l.status)).length} in motion
