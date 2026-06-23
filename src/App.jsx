@@ -310,7 +310,7 @@ function Modal({ listing, onSave, onClose, onDelete, saving }) {
                   <div key={k} style={{ gridColumn: fullWidth ? "1 / -1" : "auto" }}>
                     <label style={{ display: "block", fontSize: 11, color: "#9ca3af", marginBottom: 4 }}>{f.label}</label>
                     {f.type === "boolean" ? (
-                      <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+                      <label style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, cursor: "pointer" }}>
                         <input type="checkbox" checked={!!val} onChange={e => set(k, e.target.checked)}
                           style={{ accentColor: "#f59e0b", width: 16, height: 16 }} />
                         <span style={{ color: "#d1d5db", fontSize: 13 }}>{val ? "Yes" : "No"}</span>
