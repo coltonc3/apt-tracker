@@ -540,12 +540,13 @@ export default function App() {
                 {colHeader("Status", "status")}
                 {colHeader("Rating", "rating")}
                 <th style={{ padding: "10px 12px", color: "#6b7280", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em" }}>Link</th>
+                <th style={{ padding: "10px 12px" }} />
               </tr>
             </thead>
             <tbody>
               {filtered.map((l, i) => (
-                <tr key={l.id} onClick={() => setSelected(l)}
-                  style={{ borderBottom: "1px solid #1a2235", cursor: "pointer", background: i % 2 === 0 ? "transparent" : "#0d1420" }}
+                <tr key={l.id}
+                  style={{ borderBottom: "1px solid #1a2235", background: i % 2 === 0 ? "transparent" : "#0d1420" }}
                   onMouseEnter={e => e.currentTarget.style.background = "#1f2937"}
                   onMouseLeave={e => e.currentTarget.style.background = i % 2 === 0 ? "transparent" : "#0d1420"}
                 >
@@ -580,10 +581,13 @@ export default function App() {
                   <td style={{ padding: "12px 12px" }} onClick={e => e.stopPropagation()}>
                     {l.link ? <a href={l.link} target="_blank" rel="noopener noreferrer" style={{ color: "#f59e0b", fontSize: 12, textDecoration: "none" }}>↗ View</a> : <span style={{ color: "#374151" }}>—</span>}
                   </td>
+                  <td style={{ padding: "12px 8px" }} onClick={e => e.stopPropagation()}>
+                    <button onClick={() => setSelected(l)} style={{ background: "#1f2937", border: "1px solid #374151", borderRadius: 6, color: "#9ca3af", cursor: "pointer", fontSize: 13, padding: "4px 10px" }}>✏ Edit</button>
+                  </td>
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={10} style={{ padding: 40, textAlign: "center", color: "#4b5563", fontSize: 14 }}>
+                <tr><td colSpan={11} style={{ padding: 40, textAlign: "center", color: "#4b5563", fontSize: 14 }}>
                   No listings yet. Hit + Add Listing to get started.
                 </td></tr>
               )}
