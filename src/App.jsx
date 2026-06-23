@@ -305,7 +305,7 @@ function Modal({ listing, onSave, onClose, onDelete, saving }) {
                   background: "#1f2937", border: "1px solid #374151", borderRadius: 6,
                   color: "#f9fafb", padding: "6px 10px", fontSize: 13, width: "100%", boxSizing: "border-box",
                 };
-                const fullWidth = ["address", "outdoor", "laundry", "link", "pros", "cons", "notes", "rating"].includes(k);
+                const fullWidth = ["address", "outdoor", "laundry", "link", "pros", "cons", "notes", "rating", "broker", "visitDate", "noFee"].includes(k);
                 return (
                   <div key={k} style={{ gridColumn: fullWidth ? "1 / -1" : "auto" }}>
                     <label style={{ display: "block", fontSize: 11, color: "#9ca3af", marginBottom: 4 }}>{f.label}</label>
