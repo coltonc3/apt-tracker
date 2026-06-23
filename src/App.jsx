@@ -288,7 +288,7 @@ function Modal({ listing, onSave, onClose, onDelete, saving }) {
         </div>
 
         {[
-          { title: "Location & Basics", keys: ["address", "neighborhood", "price", "beds", "baths", "sqft", "floor", "status", "availableDate"] },
+          { title: "Location & Basics", keys: ["address", "neighborhood", "status", "beds", "baths", "price", "floor", "sqft", "availableDate"] },
           { title: "Amenities", keys: ["doorman", "elevator", "laundry", "outdoor", "gym", "storage", "noFee"] },
           { title: "Listing Info", keys: ["broker", "link"] },
           { title: "My Take", keys: ["visitDate", "rating", "pros", "cons", "notes"] },
