@@ -112,7 +112,7 @@ const FIELDS = {
   storage: { label: "Storage", type: "boolean" },
   noFee: { label: "No Fee", type: "boolean" },
   availableDate: { label: "Available", type: "date" },
-  visitDate: { label: "Visit Date", type: "date" },
+  visitDate: { label: "Tour Date & Time (EST)", type: "datetime_est" },
   broker: { label: "Broker", type: "text" },
   link: { label: "Listing Link", type: "text" },
   rating: { label: "My Rating (1–5)", type: "star_rating" },
@@ -329,6 +329,11 @@ function Modal({ listing, onSave, onClose, onDelete, saving }) {
                     ) : f.type === "nullable_number" ? (
                       <input type="number" value={val === "N/A" ? "" : val} onChange={e => set(k, e.target.value)}
                         placeholder="—" style={inputStyle} />
+                    ) : f.type === "datetime_est" ? (
+                      <div>
+                        <input type="datetime-local" value={val} onChange={e => set(k, e.target.value)} style={inputStyle} />
+                        <span style={{ fontSize: 11, color: "#6b7280", marginTop: 4, display: "block" }}>Eastern Time (EST)</span>
+                      </div>
                     ) : (
                       <input type={f.type === "number" ? "number" : f.type === "date" ? "date" : "text"}
                         value={val} onChange={e => set(k, e.target.value)} style={inputStyle} />
