@@ -467,6 +467,15 @@ export default function App() {
     </th>
   );
 
+  const [copyOpen, setCopyOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const copyText = `Move-in: Sept 1, 2026\nMax price: $5000\nTour availability: weekdays before 9am & after 4pm\nBeds: 1bd+\nBaths: 1ba+`;
+  const handleCopy = () => {
+    navigator.clipboard.writeText(copyText);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const pricedListings = filtered.filter(l => l.price);
 
   return (
@@ -482,13 +491,28 @@ export default function App() {
               {loading && " · syncing…"}
             </p>
           </div>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={fetchListings} title="Refresh" style={{ background: "#1f2937", color: "#9ca3af", border: "1px solid #374151", borderRadius: 8, padding: "10px 14px", cursor: "pointer", fontSize: 16 }}>
-              ↻
-            </button>
-            <button onClick={() => setSelected(emptyListing())} style={{ background: "#f59e0b", color: "#1a1a1a", border: "none", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>
-              + Add Listing
-            </button>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={fetchListings} title="Refresh" style={{ background: "#1f2937", color: "#9ca3af", border: "1px solid #374151", borderRadius: 8, padding: "10px 14px", cursor: "pointer", fontSize: 16 }}>
+                ↻
+              </button>
+              <button onClick={() => setSelected(emptyListing())} style={{ background: "#f59e0b", color: "#1a1a1a", border: "none", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>
+                + Add Listing
+              </button>
+            </div>
+            <div style={{ position: "relative" }}>
+              <button onClick={() => setCopyOpen(o => !o)} style={{ background: "#1f2937", color: "#9ca3af", border: "1px solid #374151", borderRadius: 8, padding: "7px 14px", cursor: "pointer", fontSize: 13, display: "flex", alignItems: "center", gap: 6 }}>
+                Copy Me {copyOpen ? "▲" : "▼"}
+              </button>
+              {copyOpen && (
+                <div style={{ position: "absolute", right: 0, top: "calc(100% + 6px)", background: "#111827", border: "1px solid #374151", borderRadius: 10, padding: 14, zIndex: 50, minWidth: 260 }}>
+                  <pre style={{ margin: "0 0 10px", fontSize: 13, color: "#d1d5db", fontFamily: "inherit", lineHeight: 1.7, whiteSpace: "pre-wrap" }}>{copyText}</pre>
+                  <button onClick={handleCopy} style={{ width: "100%", background: copied ? "#065f46" : "#1f2937", color: copied ? "#6ee7b7" : "#9ca3af", border: `1px solid ${copied ? "#065f46" : "#374151"}`, borderRadius: 6, padding: "7px 0", cursor: "pointer", fontSize: 13, fontWeight: 600, transition: "all 0.15s" }}>
+                    {copied ? "Copied!" : "Click to copy"}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
