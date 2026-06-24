@@ -271,6 +271,36 @@ function Modal({ listing, onSave, onClose, onDelete, saving }) {
   const [form, setForm] = useState({ ...listing });
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
+  const addToCalendar = () => {
+    const [date, time] = (form.visitDate || "").split("T");
+    if (!date) return;
+    const [year, month, day] = date.split("-");
+    const [hour = "10", min = "00"] = (time || "10:00").split(":");
+    const endHour = String(Number(hour) + 1).padStart(2, "0");
+    const fmt = (h, m) => `${year}${month}${day}T${h}${m}00`;
+    const desc = [
+      form.neighborhood && `Neighborhood: ${form.neighborhood}`,
+      form.price && `Rent: $${form.price}/mo`,
+      form.beds && `Beds: ${form.beds}`,
+      form.baths && `Baths: ${form.baths}ba`,
+      form.notes && `Notes: ${form.notes}`,
+    ].filter(Boolean).join("\\n");
+    const ics = [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      `DTSTART;TZID=America/New_York:${fmt(hour, min)}`,
+      `DTEND;TZID=America/New_York:${fmt(endHour, min)}`,
+      `SUMMARY:Tour – ${form.address}`,
+      `LOCATION:${form.address}`,
+      `DESCRIPTION:${desc}`,
+      "END:VEVENT", "END:VCALENDAR",
+    ].join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+    a.download = `tour-${(form.address || "apt").replace(/\s+/g, "-")}.ics`;
+    a.click();
+  };
+
   return (
     <div style={{
       position: "fixed", inset: 0, background: "#000000cc", zIndex: 100,
@@ -353,6 +383,11 @@ function Modal({ listing, onSave, onClose, onDelete, saving }) {
             </button>
           ) : <div />}
           <div style={{ display: "flex", gap: 8 }}>
+            {form.visitDate && (
+              <button onClick={addToCalendar} style={{ background: "#1f2937", color: "#6ee7b7", border: "1px solid #065f46", borderRadius: 6, padding: "8px 14px", cursor: "pointer", fontSize: 13 }}>
+                + Calendar
+              </button>
+            )}
             <button onClick={onClose} style={{ background: "#1f2937", color: "#9ca3af", border: "1px solid #374151", borderRadius: 6, padding: "8px 16px", cursor: "pointer", fontSize: 13 }}>
               Cancel
             </button>
