@@ -500,6 +500,9 @@ export default function App() {
             <button onClick={fetchListings} title="Refresh" style={{ background: "#1f2937", color: "#9ca3af", border: "1px solid #374151", borderRadius: 8, padding: "10px 14px", cursor: "pointer", fontSize: 16 }}>
               ↻
             </button>
+            <button onClick={() => setSelected(emptyListing())} style={{ background: "#f59e0b", color: "#1a1a1a", border: "none", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>
+              + Add Listing
+            </button>
             <div style={{ position: "relative" }}>
               <button onClick={() => setCopyOpen(o => !o)} style={{ background: "#1f2937", color: "#9ca3af", border: "1px solid #374151", borderRadius: 8, padding: "10px 14px", cursor: "pointer", fontSize: 13, display: "flex", alignItems: "center", gap: 6 }}>
                 Copy Me {copyOpen ? "▲" : "▼"}
@@ -513,9 +516,6 @@ export default function App() {
                 </div>
               )}
             </div>
-            <button onClick={() => setSelected(emptyListing())} style={{ background: "#f59e0b", color: "#1a1a1a", border: "none", borderRadius: 8, padding: "10px 20px", cursor: "pointer", fontWeight: 700, fontSize: 14 }}>
-              + Add Listing
-            </button>
           </div>
         </div>
       </div>
