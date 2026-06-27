@@ -410,8 +410,8 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [filterStatus, setFilterStatus] = useState("All");
   const [filterNeighborhood, setFilterNeighborhood] = useState("All");
-  const [sortBy, setSortBy] = useState("price");
-  const [sortDir, setSortDir] = useState("asc");
+  const [sortBy, setSortBy] = useState("lastUpdated");
+  const [sortDir, setSortDir] = useState("desc");
   const [search, setSearch] = useState("");
   const [toast, setToast] = useState(null);
 
