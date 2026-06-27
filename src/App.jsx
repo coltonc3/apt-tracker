@@ -46,7 +46,7 @@ const toDb = (l) => ({
   pros: l.pros,
   cons: l.cons,
   notes: l.notes,
-  last_updated: new Date().toISOString().slice(0, 10),
+  last_updated: new Date().toISOString(),
 });
 
 const fromDb = (r) => ({
@@ -424,7 +424,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const data = await api("apartments?select=*&order=id.desc");
+      const data = await api("apartments?select=*&order=last_updated.desc,id.desc");
       setListings((data || []).map(fromDb));
     } catch (e) {
       setError(e.message);
